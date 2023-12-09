@@ -52,7 +52,7 @@ const PaperForm = () => {
       {user.role === "HOD" ? (
         <main className="paper">
           <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
-            Add Paper
+            Add Course
           </h2>
           <form className="w-full md:w-1/3">
             <label htmlFor="department">Department:</label>
@@ -115,7 +115,7 @@ const PaperForm = () => {
               onChange={(e) => handleFormChange(e)}
             >
               <option defaultValue hidden>
-                Select Teacher
+                Select Professor
               </option>
               {teachers?.map((teacher) => (
                 <option key={teacher._id} value={teacher._id}>

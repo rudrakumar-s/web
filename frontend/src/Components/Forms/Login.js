@@ -53,7 +53,7 @@ const Login = () => {
     }
   };
 
-  
+
   // const handleLogin = async (e) => {
   //   e.preventDefault();
   //   setButtonText("Loading...");
@@ -106,10 +106,10 @@ const Login = () => {
           <CircleDesign />
           <section className="z-0 mb-4 flex items-center gap-2 whitespace-nowrap text-6xl md:text-8xl lg:gap-4">
             <FaUniversity />
-            <h1 className="font-spectral font-semibold  text-slate-900  dark:text-slate-300 ">
-              K
-              <span className="inline-block h-10 w-10 rounded-full bg-violet-900 dark:bg-violet-600 md:h-14 md:w-14 xl:h-14 xl:w-14"></span>
-              llege
+            <h1 style={{ fontSize: '50px' }} className="font-spectral font-semibold  text-slate-500  dark:text-slate-300 ">
+              
+              Northeastern University
+              
             </h1>
           </section>
           <section className="z-0 w-[65%] justify-self-center rounded-lg bg-slate-100 opacity-80 hover:opacity-100 focus:opacity-100  dark:bg-[#060913] sm:w-[min(50%,360px)] md:w-[min(40%,360px)] xl:w-[min(23%,360px)] ">
@@ -123,7 +123,7 @@ const Login = () => {
                     className="radio relative flex w-1/2 cursor-pointer flex-col items-center rounded-tl-lg p-4 dark:border-l-[1.5px] dark:border-t-[1.5px]  dark:border-solid dark:border-violet-900"
                     htmlFor="teacher"
                   >
-                    Teacher
+                    Professor
                     <input
                       className="absolute opacity-0"
                       type="radio"

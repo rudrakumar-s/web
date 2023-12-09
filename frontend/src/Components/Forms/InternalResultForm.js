@@ -107,7 +107,7 @@ const InternalResultForm = () => {
   return (
     <main className="internal">
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
-        Internal Mark
+        Grades
       </h2>
       <section className="form__head">
         <form className="w-full gap-4 accent-violet-900 md:flex">
@@ -121,7 +121,7 @@ const InternalResultForm = () => {
             onChange={(e) => setPaper(e.target.value)}
           >
             <option defaultValue hidden>
-              Select Paper
+              Select Course
             </option>
             {paperList.map((paper) => (
               <option key={paper._id} value={paper._id}>
@@ -134,7 +134,7 @@ const InternalResultForm = () => {
             type="submit"
             onClick={(e) => fetchInternal(e)}
           >
-            Fetch
+            Search
           </button>
         </form>
       </section>

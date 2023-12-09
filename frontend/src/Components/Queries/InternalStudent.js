@@ -25,7 +25,7 @@ const InternalStudent = () => {
   return (
     <main className="internal">
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
-        Internal Mark
+        Grades
       </h2>
       <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       {internal.length ? (
@@ -34,11 +34,11 @@ const InternalStudent = () => {
             <TableHeader
               AdditionalHeaderClasses={"text-left"}
               Headers={[
-                "Paper",
-                "Test",
-                "Seminar",
+                "Course",
                 "Assignment",
-                "Attendance",
+                "MidTerm",
+                "Final",
+                "Project",
                 "Total",
               ]}
             />

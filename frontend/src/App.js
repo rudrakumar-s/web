@@ -17,7 +17,7 @@ import AppLayout from "./Components/Layouts/AppLayout";
 import Layout from "./Components/Layouts/Layout";
 import Dash from "./Components/Layouts/Dash";
 import ErrorElement from "./Components/Layouts/ErrorElement";
-import AttendanceLayout from "./Components/Layouts/AttendanceLayout";
+// import AttendanceLayout from "./Components/Layouts/AttendanceLayout";
 import InternalLayout from "./Components/Layouts/InternalLayout";
 import RegisterLayout from "./Components/Layouts/RegisterLayout";
 
@@ -31,7 +31,7 @@ import Profile from "./Components/Queries/Profile";
 import TeacherForm from "./Components/Forms/TeacherForm";
 import StudentForm from "./Components/Forms/StudentForm";
 import NotesForm from "./Components/Forms/NotesForm";
-import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
+// import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import Login from "./Components/Forms/Login";
 
 // lazy loading user specific components
@@ -61,9 +61,9 @@ function App() {
           <Route path="paper/:paper/add" element={<NotesForm />} />
           <Route path="paper/:paper/:note/edit" element={<NotesForm />} />
           <Route path="paper/:paper/students" element={<StudentsList />} />
-          <Route path="attendance" element={<AttendanceLayout />} />
+          {/* <Route path="attendance" element={<AttendanceLayout />} /> */}
           <Route path="internal" element={<InternalLayout />} />
-          <Route path="time_schedule" element={<TimeScheduleForm />} />
+          {/* <Route path="time_schedule" element={<TimeScheduleForm />} /> */}
           <Route path="profile" element={<Profile />} />
           <Route
             path="approve_teacher"

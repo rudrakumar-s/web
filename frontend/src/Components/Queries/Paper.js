@@ -31,7 +31,7 @@ const Paper = () => {
           ))}
         </section>
       ) : (
-        <p className="text-lg">No Papers Found.</p>
+        <p className="text-lg">No Courses Found.</p>
       )}
     </main>
   );

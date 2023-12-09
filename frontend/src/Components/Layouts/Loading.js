@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className="flex h-full w-full items-center justify-center text-lg">
       <PiSpinnerGapBold className="animate-spin" />
-      Loading...
+      Getting Things for you...
     </div>
   );
 };

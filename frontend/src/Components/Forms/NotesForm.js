@@ -76,7 +76,7 @@ const NotesForm = () => {
           onChange={(e) => handleFormChange(e)}
         />
         <label htmlFor="body" className="block text-lg font-medium">
-          Body:
+          Content:
         </label>
         <textarea
           className="mb-4 block w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"

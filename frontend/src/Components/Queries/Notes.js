@@ -51,7 +51,7 @@ const Notes = () => {
         <li className="p-1">Batch : {paper.year}</li>
         <li className="p-1">Semester : {paper.semester}</li>
         {user.userType === "student" && (
-          <li className="p-1">Teacher : {paper.teacher.name}</li>
+          <li className="p-1">Professor : {paper.teacher.name}</li>
         )}
         <li>
           <Link

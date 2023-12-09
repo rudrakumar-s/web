@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { GiBookshelf } from "react-icons/gi";
-import { IoCalendarOutline } from "react-icons/io5";
+
 import { HiOutlineDocumentReport } from "react-icons/hi";
-import { AiOutlineSchedule } from "react-icons/ai";
+
 import { BiBookAdd } from "react-icons/bi";
 import { RiUserAddLine } from "react-icons/ri";
 import { PiBooks, PiUser, PiStudent } from "react-icons/pi";
@@ -33,9 +33,9 @@ const Dash = () => {
         >
           <GiBookshelf className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
-            Papers
+            Courses
             <p className="text-sm font-normal lg:text-base ">
-              View Papers and Notes
+              View Courses and Notes
             </p>
           </div>
         </Link>
@@ -59,9 +59,9 @@ const Dash = () => {
         >
           <HiOutlineDocumentReport className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
-            Internal Mark
+            Grades
             <p className="text-sm font-normal lg:text-base ">
-              View or Edit Internal Marks
+              View or Edit Grades
             </p>
           </div>
         </Link>
@@ -87,9 +87,9 @@ const Dash = () => {
             >
               <BiBookAdd className="text-[2.5rem] lg:text-[4rem] " />
               <div className="font-semibold">
-                Add Paper
+                Add Course
                 <p className="text-sm font-normal lg:text-base ">
-                  Add a New Paper
+                  Add a New Course
                 </p>
               </div>
             </Link>
@@ -100,14 +100,17 @@ const Dash = () => {
             >
               <RiUserAddLine className="text-[2.5rem] lg:text-[4rem] " />
               <div className="font-semibold">
-                Approve Teacher
+                Approve Professor
                 <p className="text-sm font-normal lg:text-base ">
-                  Approve registered teacher(s)
+                  Approve registered Professor(s)
                 </p>
               </div>
             </Link>
           </>
         )}
+
+
+
         {user.role === "student" && (
           <Link
             className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
@@ -115,9 +118,9 @@ const Dash = () => {
           >
             <PiBooks className="text-[2.5rem] lg:text-[4rem] " />
             <div className="font-semibold">
-              Manage Paper
+              Manage Course
               <p className="text-sm font-normal lg:text-base ">
-                Join or Leave Paper
+                Register or Drop Course
               </p>
             </div>
           </Link>

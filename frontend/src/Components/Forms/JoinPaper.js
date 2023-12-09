@@ -72,7 +72,7 @@ const JoinPaper = () => {
       {user.role === "student" ? (
         <main>
           <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
-            Manage Paper
+            Manage Course
           </h2>
           <form>
             {papers.length ? (
@@ -82,11 +82,11 @@ const JoinPaper = () => {
                     <TableHeader
                       AdditionalRowClasses={"rounded-t-xl text-left"}
                       Headers={[
-                        "Paper",
+                        "Course",
                         "Department",
                         "Year",
                         "Semester",
-                        "Teacher",
+                        "Professor",
                         "Manage",
                       ]}
                     />
@@ -117,7 +117,7 @@ const JoinPaper = () => {
                                 onClick={(e) => handleJoin(e)}
                                 className="m-0 flex h-auto w-full justify-center bg-transparent py-3  text-lg  hover:bg-violet-900 hover:text-slate-100 dark:text-slate-100 "
                               >
-                                Join
+                                Register
                               </button>
                             ) : (
                               <button
@@ -127,7 +127,7 @@ const JoinPaper = () => {
                                 name={index}
                                 onClick={(e) => handleLeave(e)}
                               >
-                                Leave
+                                Drop Course
                               </button>
                             )}
                           </td>
