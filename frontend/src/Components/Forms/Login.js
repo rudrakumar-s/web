@@ -97,9 +97,9 @@ const Login = () => {
   return (
     <>
       {!user?._id ? (
-        <main className="relative z-0 flex h-screen flex-col items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 text-slate-950 dark:from-slate-800 dark:to-slate-950 dark:text-slate-300">
+        <main className="relative z-0 flex h-screen flex-col items-center justify-center bg-gradient-to-b from-red-500 to-black text-slate-950 dark:text-slate-300">
           {message && !error && (
-            <header className="absolute top-0 w-full bg-violet-500/50 p-2 text-xs dark:bg-slate-700/50 lg:text-base">
+            <header className="absolute top-0 w-full bg-gradient-to-r from-red-500 to-black p-2 text-xs lg:text-base">
               {message}
             </header>
           )}
@@ -112,15 +112,15 @@ const Login = () => {
               
             </h1>
           </section>
-          <section className="z-0 w-[65%] justify-self-center rounded-lg bg-slate-100 opacity-80 hover:opacity-100 focus:opacity-100  dark:bg-[#060913] sm:w-[min(50%,360px)] md:w-[min(40%,360px)] xl:w-[min(23%,360px)] ">
+          <section className="z-0 w-[65%] justify-self-center rounded-lg bg-gradient-to-r from-red-500 to-black opacity-80 hover:opacity-100 focus:opacity-100 sm:w-[min(50%,360px)] md:w-[min(40%,360px)] xl:w-[min(23%,360px)]">
             <form
               className="tracking-wide placeholder:text-slate-200 dark:placeholder:text-violet-200 "
-              onSubmit={(e) => handleLogin(e)}
+              onSubmit={(e) => handleLogin(e)}  
             >
               <section className="flex flex-col items-center justify-start ">
                 <div className="flex w-full text-lg ">
                   <label
-                    className="radio relative flex w-1/2 cursor-pointer flex-col items-center rounded-tl-lg p-4 dark:border-l-[1.5px] dark:border-t-[1.5px]  dark:border-solid dark:border-violet-900"
+                    className={`radio relative flex w-1/2 cursor-pointer flex-col items-center rounded-tl-lg p-4 ${userType === 'teacher' ? 'text-yellow-500' : ''} dark:border-l-[1.5px] dark:border-t-[1.5px] dark:border-solid dark:border-white`}
                     htmlFor="teacher"
                   >
                     Professor
@@ -134,7 +134,7 @@ const Login = () => {
                     />
                   </label>
                   <label
-                    className="radio relative flex w-1/2 cursor-pointer flex-col items-center rounded-tr-lg p-4 dark:border-r-[1.5px] dark:border-t-[1.5px] dark:border-solid dark:border-violet-900"
+                    className={`radio relative flex w-1/2 cursor-pointer flex-col items-center rounded-tr-lg p-4 ${userType === 'student' ? 'text-yellow-500' : ''} dark:border-r-[1.5px] dark:border-t-[1.5px] dark:border-solid dark:border-white`}
                     htmlFor="student"
                   >
                     Student
@@ -148,7 +148,7 @@ const Login = () => {
                     />
                   </label>
                 </div>
-                <div className="flex w-full justify-center p-1 pt-0 text-8xl dark:border-x-[1.5px] dark:border-solid dark:border-violet-900 md:p-3 md:pt-0">
+                <div className="flex w-full justify-center p-1 pt-0 text-8xl dark:border-x-[1.5px] dark:border-solid dark:border-white-900 md:p-3 md:pt-0">
                   {userType === "student" ? (
                     <PiStudentThin className="animate-slide rounded-full border-2 border-slate-900 p-1 font-light dark:border-slate-300 md:p-2" />
                   ) : userType === "teacher" ? (
@@ -158,9 +158,9 @@ const Login = () => {
                   )}
                 </div>
               </section>
-              <section className="rounded-b-lg px-4 pb-4 dark:border-x-[1.5px] dark:border-b-[1.5px] dark:border-solid dark:border-violet-900">
+              <section className="rounded-b-lg px-4 pb-4 dark:border-x-[1.5px] dark:border-b-[1.5px] dark:border-solid dark:border-white-900">
                 <input
-                  className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+                  className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-white p-1 pl-2 outline-none"
                   placeholder="username"
                   id="username"
                   type="text"
@@ -171,7 +171,7 @@ const Login = () => {
                   onChange={(e) => setUsername(e.target.value)}
                 />
                 <input
-                  className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+                  className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-white p-1 pl-2 outline-none"
                   placeholder="password"
                   id="password"
                   type="password"
@@ -181,7 +181,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
-                  className="mb-1 flex h-10 w-full items-center justify-center gap-1 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 p-1 font-bold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 disabled:cursor-wait dark:border-violet-300 dark:bg-violet-600 dark:text-slate-50 dark:hover:bg-slate-900 dark:focus:bg-slate-900 lg:mb-2 "
+                  className="mb-1 flex h-10 w-full items-center justify-center gap-1 rounded-md border-[1.5px] border-solid bg-black p-1 font-bold tracking-wide text-white hover:bg-white hover:text-black focus:bg-white focus:text-black disabled:cursor-wait lg:mb-2"
                   type="submit"
                   value="Login"
                   disabled={buttonText !== "Login"}
@@ -193,12 +193,12 @@ const Login = () => {
                   {buttonText}
                 </button>
                 {error ? <ErrorStrip error={error} /> : ""}
-                <p className="inline text-slate-600 dark:text-violet-200">
+                <p className="inline text-white dark:text-white">
                   Click to{" "}
                 </p>
                 <button
                   type="button"
-                  className="font-semibold text-violet-600 decoration-2 hover:underline focus:underline   dark:text-violet-400"
+                  className="font-semibold text-white decoration-2 hover:text-black focus:underline dark:text-white dark:hover:text-black"
                   onClick={() => navigate("./register/reg_student")}
                 >
                   Register

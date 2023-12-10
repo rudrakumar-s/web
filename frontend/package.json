@@ -42,5 +42,7 @@
   },
   "devDependencies": {
     "prettier-plugin-tailwindcss": "^0.4.1"
-  }
+  },
+  "main": "tailwind.config.js",
+  "author": ""
 }
