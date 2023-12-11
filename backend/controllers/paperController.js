@@ -1,6 +1,7 @@
 const { mongoose } = require("mongoose");
 const Paper = require("./../models/Paper");
 const asyncHandler = require("express-async-handler");
+const nodemailer = require("nodemailer");
 
 // @desc Get Papers for each Teacher
 // @route GET /Paper/teacher/teacherId
@@ -200,30 +201,30 @@ const addPaper = asyncHandler(async (req, res) => {
 // @desc Update Paper
 // @route PATCH /Paper
 // @access Private
-const updateStudents = asyncHandler(async (req, res) => {
-  const { id, students } = req.body;
+// const updateStudents = asyncHandler(async (req, res) => {
+//   const { id, students } = req.body;
 
-  // Confirm Data
-  if (!id || !students) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
+//   // Confirm Data
+//   if (!id || !students) {
+//     return res.status(400).json({ message: "All fields are required" });
+//   }
 
-  // Find Record
-  const record = await Paper.findById(id).exec();
+//   // Find Record
+//   const record = await Paper.findById(id).exec();
 
-  if (!record) {
-    return res.status(404).json({ message: "Paper doesn't exist" });
-  }
+//   if (!record) {
+//     return res.status(404).json({ message: "Paper doesn't exist" });
+//   }
 
-  record.students = students;
+//   record.students = students;
 
-  const save = await record.save();
-  if (save) {
-    res.json({ message: "Updated" });
-  } else {
-    res.json({ message: "Save Failed" });
-  }
-});
+//   const save = await record.save();
+//   if (save) {
+//     res.json({ message: "Updated" });
+//   } else {
+//     res.json({ message: "Save Failed" });
+//   }
+// });
 
 // @desc Delete Paper
 // @route DELETE /Paper
@@ -245,6 +246,79 @@ const deletePaper = asyncHandler(async (req, res) => {
 
   res.json({ message: `${paper} deleted` });
 });
+
+
+// ############################################################################ Student update fucntion with Email Function ##########################################################################
+const updateStudents = asyncHandler(async (req, res) => {
+  const { id, students } = req.body;
+
+  if (!id || !students) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  const paper = await Paper.findById(id).exec();
+
+  if (!paper) {
+    return res.status(404).json({ message: "Paper doesn't exist" });
+  }
+
+  const previousStudents = new Set(paper.students.map(String));
+  const updatedStudents = new Set(students.map(String));
+
+  const newStudents = students.filter(student => !previousStudents.has(student));
+  const droppedStudents = [...previousStudents].filter(student => !updatedStudents.has(student));
+
+  if (newStudents.length > 0) {
+    await sendEmailToStudents(newStudents, 'registered', paper.paper);
+  }
+
+  if (droppedStudents.length > 0) {
+    await sendEmailToStudents(droppedStudents, 'dropped', paper.paper);
+  }
+
+  paper.students = students;
+
+  const updated = await paper.save();
+
+  if (updated) {
+    res.json({ message: "Paper updated successfully" });
+  } else {
+    res.status(400).json({ message: "Failed to update paper" });
+  }
+});
+
+// Helper function to send email to students
+const sendEmailToStudents = async (studentIds, action, courseName) => {
+  for (const studentId of studentIds) {
+    const student = await Student.findById(studentId);
+
+    if (student) {
+      const subject = `Course ${action} notification`;
+      const text = `You have ${action} the course: ${courseName}.`;
+
+      // Define email sending logic here
+      // Example using Nodemailer
+      const transporter = nodemailer.createTransport({
+        // SMTP configuration
+      });
+      const mailOptions = {
+        from: 'your-email@example.com',
+        to: student.email,
+        subject: subject,
+        text: text,
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+}
+};
+
 
 module.exports = {
   addPaper,
