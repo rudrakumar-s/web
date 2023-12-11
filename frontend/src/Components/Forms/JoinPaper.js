@@ -71,13 +71,13 @@ const JoinPaper = () => {
     <>
       {user.role === "student" ? (
         <main>
-          <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
+          <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-white md:text-6xl">
             Manage Course
           </h2>
           <form>
             {papers.length ? (
               <>
-                <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
+                <div className="my-4 w-full overflow-auto rounded-md border-2 border-black-900 dark:border-slate-500 dark:p-[1px]">
                   <table className="w-full text-left">
                     <TableHeader
                       AdditionalRowClasses={"rounded-t-xl text-left"}
