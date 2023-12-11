@@ -37,6 +37,7 @@ const JoinPaper = () => {
     const students = papers[index].students;
     students.push(user._id);
     updateStudents(paperId, students, index);
+
   };
 
   const handleLeave = async (e) => {

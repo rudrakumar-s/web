@@ -113,7 +113,7 @@ const Dash = () => {
 
         {user.role === "student" && (
           <Link
-            className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+            className="flex gap-2 rounded-lg bg-gradient-to-r from-red-500 to-black p-6 text-base text-white hover:bg-gradient-to-l hover:from-black hover:to-red-500 hover:text-white dark:bg-gradient-to-r dark:from-red-500 dark:to-black lg:text-lg"
             to={"./join_paper"}
           >
             <PiBooks className="text-[2.5rem] lg:text-[4rem] " />
