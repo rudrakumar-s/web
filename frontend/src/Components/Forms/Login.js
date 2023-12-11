@@ -4,7 +4,7 @@ import UserContext from "../../Hooks/UserContext";
 import axios from "../../config/api/axios";
 import { FaUniversity } from "react-icons/fa";
 import { PiStudentThin, PiUserThin, PiSpinnerGapBold } from "react-icons/pi";
-import CircleDesign from "../Layouts/CircleDesign";
+
 import ErrorStrip from "../ErrorStrip";
 
 const Login = () => {
@@ -103,7 +103,7 @@ const Login = () => {
               {message}
             </header>
           )}
-          <CircleDesign />
+          
           <section className="z-0 mb-4 flex items-center gap-2 whitespace-nowrap text-6xl md:text-8xl lg:gap-4">
             <FaUniversity />
             <h1 style={{ fontSize: '50px' }} className="font-spectral font-semibold  text-slate-500  dark:text-slate-300 ">
