@@ -23,7 +23,7 @@ const Dash = () => {
 
   return (
     <main className="self-center">
-      <h2 className="m-6 mx-auto text-center text-6xl font-bold dark:text-slate-400">
+      <h2 className="m-6 mx-auto text-center text-6xl font-bold text-white dark:text-white">
         Dashboard
       </h2>
       <div className="grid grid-cols-1 place-content-center gap-3 px-1 py-4 lg:grid-cols-2 lg:gap-4 lg:px-8 xl:grid-cols-3">
@@ -126,7 +126,7 @@ const Dash = () => {
           </Link>
         )}
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-gradient-to-r from-red-500 to-black p-6 text-base text-white hover:bg-gradient-to-l hover:from-black hover:to-red-500 hover:text-white dark:bg-gradient-to-r dark:from-red-500 dark:to-black lg:text-lg"
           to={"./profile"}
         >
           {user.role === "student" ? (
