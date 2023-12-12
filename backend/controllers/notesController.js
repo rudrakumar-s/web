@@ -1,9 +1,7 @@
 const Notes = require("./../models/Notes");
 const asyncHandler = require("express-async-handler");
 
-// @desc Get Notes for each Paper
-// @route GET /Notes/:paper
-// @access Everyone
+// Retrieves all notes for a specific course.
 const getNotes = async (req, res) => {
   if (!req?.params?.paperId) {
     return res
@@ -21,9 +19,7 @@ const getNotes = async (req, res) => {
   res.json(notes);
 };
 
-// @desc Get Notes for each Paper
-// @route GET /Notes/:paper
-// @access Everyone
+// Get Notes for each Paper
 const getNote = async (req, res) => {
   if (!req?.params?.noteId) {
     return res
@@ -39,9 +35,7 @@ const getNote = async (req, res) => {
   res.json(Note);
 };
 
-// @desc Add Notes
-// @route POST /Notes
-// @access Private
+// Add Notes
 const addNotes = asyncHandler(async (req, res) => {
   const { paper, title, body } = req.body;
 
@@ -83,9 +77,7 @@ const addNotes = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update Notes
-// @route PATCH /Notes
-// @access Private
+// Update Notes
 const updateNotes = asyncHandler(async (req, res) => {
   const { id, paper, title, body } = req.body;
 
@@ -114,9 +106,7 @@ const updateNotes = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Delete Teacher
-// @route DELETE /Teacher
-// @access Private
+// Delete Teacher
 const deleteNotes = asyncHandler(async (req, res) => {
   if (!req.params.noteId) {
     return res.status(400).json({ message: "Note ID required" });

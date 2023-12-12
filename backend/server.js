@@ -9,21 +9,22 @@ const corsOptions = require("./config/corsOptions");
 const connectDB = require("./config/dbConn");
 const mongoose = require("mongoose");
 
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3500; // Sets the port number from environment variables or defaults to 3500
 
-connectDB();
+connectDB();  // Calls the function to connect to the database
 
-app.use(logger);
+app.use(logger); // Uses the logger middleware for logging requests
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // Applies CORS middleware with the specified options
 
-app.use(express.json());
+app.use(express.json()); // Parses incoming requests with JSON payloads
 
-app.use(cookieParser());
+app.use(cookieParser()); // Uses cookie-parser middleware to parse cookies
 
 app.use("/", express.static("public"));
 ``;
 
+// Registers various routes with their respective route handlers
 app.use("/", require("./routes/root"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/paper", require("./routes/paperRoutes"));
@@ -34,6 +35,8 @@ app.use("/time_schedule", require("./routes/timeScheduleRoutes"));
 app.use("/teacher", require("./routes/teacherRoutes"));
 app.use("/student", require("./routes/studentRoutes"));
 
+
+// Catches all unmatched requests and sends a 404 response
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("json")) {
@@ -45,11 +48,14 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler);
 
+
+// Once the MongoDB connection is open, starts the server
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
   app.listen(PORT, () => console.log(`server running on PORT ${PORT}`));
 });
 
+// Logs any MongoDB connection errors
 mongoose.connection.on("error", (err) => {
   console.log(err);
   logEvents(
@@ -57,6 +63,8 @@ mongoose.connection.on("error", (err) => {
     "mongoErrLog.log"
   );
 });
+
+// Catches uncaught exceptions in the app
 
 mongoose.connection.on("uncaughtException", function (err) {
   console.log(err);

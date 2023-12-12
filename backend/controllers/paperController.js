@@ -4,13 +4,13 @@ const asyncHandler = require("express-async-handler");
 const nodemailer = require("nodemailer");
 
 
-// @desc Get Papers for each Teacher
-// @route GET /Paper/teacher/teacherId
-// @access Everyone
+// Retrieves a list of course assigned to a specific teacher.
 const getPapers = asyncHandler(async (req, res) => {
-  if (!req?.params?.teacherId) {
+  if (!req?.params?.teacherId) {  // Check if teacher ID is provided in request parameters
     return res.status(400).json({ message: "Teacher ID Missing" });
   }
+
+  // Find course where the provided ID matches the teacher's ID
   const papers = await Paper.find({
     teacher: req.params.teacherId,
   })
@@ -24,13 +24,13 @@ const getPapers = asyncHandler(async (req, res) => {
   res.json(papers);
 });
 
-// @desc Get Papers for each Student
-// @route GET /paper/student/:studentId
-// @access Everyone
+// Retrieves a list of course for a specific student.
 const getPapersStudent = asyncHandler(async (req, res) => {
+  // Check if student ID is provided in request parameters
   if (!req?.params?.studentId) {
     return res.status(400).json({ message: "Student ID Missing" });
   }
+  // Aggregation to find and return courses related to the student
   const papers = await Paper.aggregate([
     {
       $lookup: {
@@ -66,14 +66,13 @@ const getPapersStudent = asyncHandler(async (req, res) => {
   res.json(papers);
 });
 
-// @desc Get All Papers
-// @route GET /paper/
-// @access Everyone
+// Retrieves all papers.
 const getAllPapers = asyncHandler(async (req, res) => {
   if (!req?.params?.studentId) {
     return res.status(400).json({ message: "Student ID Missing" });
   }
 
+  // Similar aggregation as above to get all courses
   const papers = await Paper.aggregate([
     {
       $lookup: {
@@ -108,9 +107,7 @@ const getAllPapers = asyncHandler(async (req, res) => {
   res.json(papers);
 });
 
-// @desc Get Students for each paper
-// @route GET /paper/students/:paperId
-// @access Private
+// Retrieves a list of students for a specific courses.
 const getStudentsList = asyncHandler(async (req, res) => {
   if (!req?.params?.paperId) {
     return res
@@ -118,6 +115,7 @@ const getStudentsList = asyncHandler(async (req, res) => {
       .json({ message: "Incomplete Request: Params Missing" });
   }
 
+  // Retrieves a specific paper by ID.
   const students = await Paper.findById(req.params.paperId)
     .select("students")
     .populate({ path: "students", select: "name" })
@@ -128,9 +126,7 @@ const getStudentsList = asyncHandler(async (req, res) => {
   res.json(students.students);
 });
 
-// @desc Get Paper
-// @route GET /Paper
-// @access Everyone
+// Get Paper
 const getPaper = asyncHandler(async (req, res) => {
   if (!req?.params?.paperId) {
     return res
@@ -151,9 +147,7 @@ const getPaper = asyncHandler(async (req, res) => {
   res.json(paper);
 });
 
-// @desc Add Paper
-// @route POST /Paper
-// @access Private
+// Add Paper
 const addPaper = asyncHandler(async (req, res) => {
   const { department, semester, year, paper, students, teacher } = req.body;
 
@@ -199,37 +193,7 @@ const addPaper = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update Paper
-// @route PATCH /Paper
-// @access Private
-// const updateStudents = asyncHandler(async (req, res) => {
-//   const { id, students } = req.body;
-
-//   // Confirm Data
-//   if (!id || !students) {
-//     return res.status(400).json({ message: "All fields are required" });
-//   }
-
-//   // Find Record
-//   const record = await Paper.findById(id).exec();
-
-//   if (!record) {
-//     return res.status(404).json({ message: "Paper doesn't exist" });
-//   }
-
-//   record.students = students;
-
-//   const save = await record.save();
-//   if (save) {
-//     res.json({ message: "Updated" });
-//   } else {
-//     res.json({ message: "Save Failed" });
-//   }
-// });
-
-// @desc Delete Paper
-// @route DELETE /Paper
-// @access Private
+//  Delete Paper
 const deletePaper = asyncHandler(async (req, res) => {
   const { id } = req.body;
 

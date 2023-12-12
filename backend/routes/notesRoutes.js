@@ -2,15 +2,16 @@ const express = require("express");
 const router = express.Router();
 const notesController = require("./../controllers/notesController");
 
-// TODO Student Side
-// router.route('/paper')
-// .get()
+
+// These routes use getNote, updateNotes, and deleteNotes methods from the notesController
+router.route("/:noteId")
 router
   .route("/:noteId")
   .get(notesController.getNote)
   .patch(notesController.updateNotes)
   .delete(notesController.deleteNotes);
 
+// These routes use getNotes and addNotes methods from the notesController
 router
   .route("/paper/:paperId")
   .get(notesController.getNotes)

@@ -1,12 +1,10 @@
 const TimeSchedule = require("./../models/TimeSchedule");
 const asyncHandler = require("express-async-handler");
 
-// @desc Get TimeSchedule for each Teacher
-// @route GET /TimeSchedule
-// @access Everyone
+// Get TimeSchedule for each Teacher
 const getTimeSchedule = async (req, res) => {
   if (!req?.params?.teacher_id) {
-    return res.status(400).json({ message: "ID Required" });
+    return res.status(400).json({ message: "ID Required" }); // checking fileds
   }
   const timeSchedule = await TimeSchedule.findOne({
     teacher: req.params.teacher_id,
@@ -19,9 +17,7 @@ const getTimeSchedule = async (req, res) => {
   res.json(timeSchedule);
 };
 
-// @desc Add TimeSchedule
-// @route POST /time_Schedule
-// @access Private
+// Add TimeSchedule
 const addTimeSchedule = asyncHandler(async (req, res) => {
   const { teacher, schedule } = req.body;
 
@@ -60,9 +56,7 @@ const addTimeSchedule = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update TimeSchedule
-// @route PATCH /TimeSchedule
-// @access Private
+// Update TimeSchedule
 const updateTimeSchedule = asyncHandler(async (req, res) => {
   const { teacher, schedule } = req.body;
 
@@ -78,18 +72,6 @@ const updateTimeSchedule = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Time Schedule doesn't exist" });
   }
 
-  // // Check for duplicate
-  // const duplicate = await TimeSchedule.findOne({
-  //   teacher_id: req.params.teacher_id,
-  // })
-  //   .lean()
-  //   .exec();
-
-  // // Allow Updates to original
-  // if (duplicate && duplicate?._id.toString() !== id) {
-  //   return res.status(409).json({ message: "Duplicate Time Schedule" });
-  // }
-
   record.schedule = schedule;
 
   const save = await record.save();
@@ -100,9 +82,8 @@ const updateTimeSchedule = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Delete TimeSchedule
-// @route DELETE /time_schedule
-// @access Private
+//Delete TimeSchedule
+
 const deleteTimeSchedule = asyncHandler(async (req, res) => {
   if (!req?.params?.teacher_id) {
     return res.status(400).json({ message: "ID Required" });

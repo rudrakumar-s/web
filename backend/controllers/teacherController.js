@@ -2,9 +2,7 @@ const Teacher = require("./../models/Teacher");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
-// @desc Get Teacher
-// @route GET /teacher
-// @access Private
+//  Get Teacher
 const getTeacher = asyncHandler(async (req, res) => {
   if (!req?.params?.id) return res.status(400).json({ message: "ID Missing" });
 
@@ -17,9 +15,7 @@ const getTeacher = asyncHandler(async (req, res) => {
   res.json(teacher);
 });
 
-// @desc Get all Teachers
-// @route GET /Teachers
-// @access Private
+// Get all Teachers
 const getNewTeachers = asyncHandler(async (req, res) => {
   if (!req?.params?.department)
     return res.status(400).json({ message: "Params Missing" });
@@ -36,9 +32,7 @@ const getNewTeachers = asyncHandler(async (req, res) => {
   res.json(teachers);
 });
 
-// @desc Get Teacher Names only
-// @route GET /TeachersList
-// @access Private
+// Get Teacher Names only
 const getTeacherList = asyncHandler(async (req, res) => {
   if (!req?.params?.department)
     return res.status(400).json({ message: "Params Missing" });
@@ -54,9 +48,7 @@ const getTeacherList = asyncHandler(async (req, res) => {
   res.json(teachersList);
 });
 
-// @desc Create New Teacher
-// @route POST /Teacher
-// @access Private
+// Create New Teacher
 const createNewTeacher = asyncHandler(async (req, res) => {
   const { username, name, email, qualification, department, password, roles } =
     req.body;
@@ -103,9 +95,7 @@ const createNewTeacher = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update Teacher
-// @route PATCH /Teacher
-// @access Private
+// Update Teacher
 const approveTeacher = asyncHandler(async (req, res) => {
   const { id, roles } = req.body;
 
@@ -121,18 +111,13 @@ const approveTeacher = asyncHandler(async (req, res) => {
 
   teacher.roles = roles;
 
-  // if (password) {
-  //   // Hash Pwd
-  //   teacher.password = await bcrypt.hash(password, 10);
-  // }
   await teacher.save();
 
   res.json({ message: "Teacher Approved" });
 });
 
-// @desc Delete Teacher
-// @route DELETE /Teacher
-// @access Private
+// Delete Teacher
+
 const deleteTeacher = asyncHandler(async (req, res) => {
   const id = req.params.id;
 

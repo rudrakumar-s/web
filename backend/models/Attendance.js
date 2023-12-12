@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Attendance of Students
+// Schema to record attendance details of students for a specific paper
 const attendanceSchema = new mongoose.Schema(
   {
     paper: {
@@ -21,11 +21,11 @@ const attendanceSchema = new mongoose.Schema(
         student: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Student",
+          ref: "Student", // reference to student model
         },
         present: {
           type: Boolean,
-          default: "true",
+          default: "true",  // Automatically add timestamps
         },
       },
     ],

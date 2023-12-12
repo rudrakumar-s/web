@@ -2,10 +2,9 @@ const Student = require("./../models/Student");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
-// @desc Get all Student
-// @route GET /Student
-// @access Private
+// Retrieves a specific student by ID.
 const getStudent = asyncHandler(async (req, res) => {
+  // Check if ID is provided in request parameters
   if (!req?.params?.id) return res.status(400).json({ message: "ID Missing" });
 
   const student = await Student.findById(req.params.id)
@@ -17,9 +16,7 @@ const getStudent = asyncHandler(async (req, res) => {
   res.json(student);
 });
 
-// @desc Get all Student
-// @route GET /Student
-// @access Private
+// Retrieves a list of all students.
 const getAllStudents = asyncHandler(async (req, res) => {
   const students = await Student.find().select("-password").lean();
   if (!students?.length) {
@@ -28,9 +25,7 @@ const getAllStudents = asyncHandler(async (req, res) => {
   res.json(students);
 });
 
-// @desc Create New Student
-// @route POST /Student
-// @access Private
+// Create New Student
 const createNewStudent = asyncHandler(async (req, res) => {
   const { name, course, email, username, password } = req.body;
 
@@ -67,9 +62,7 @@ const createNewStudent = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update Student
-// @route PATCH /Student
-// @access Private
+//  Update Student
 const updateStudent = asyncHandler(async (req, res) => {
   const { id, name, email, username, password } = req.body;
 
@@ -107,9 +100,7 @@ const updateStudent = asyncHandler(async (req, res) => {
   res.json({ message: "User Updated" });
 });
 
-// @desc Delete Student
-// @route DELETE /Student
-// @access Private
+// Delete Student
 const deleteStudent = asyncHandler(async (req, res) => {
   const { id } = req.body;
 

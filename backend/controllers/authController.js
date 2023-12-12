@@ -5,11 +5,9 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User"); // Adjust this based on your user model
 
 
-// @desc Auth Login
-// @route POST /auth/login/teacher
-// @access Public
+// Teacher login handler
 const teacherLogin = asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password } = req.body;    // Extract username and password from request body
 
   if (!username || !password) {
     return res.status(400).json({ message: "All Fields are required" });
@@ -23,9 +21,12 @@ const teacherLogin = asyncHandler(async (req, res) => {
     return res.status(418).json({ message: "User not Approved" });
   }
 
+  // Check if password matches
   const match = await bcrypt.compare(password, teacher.password);
   if (!match) return res.status(401).json({ message: "Incorrect Password" });
   else {
+
+    // Return teacher details if login is successful
     res.status(200).json({
       _id: teacher.id,
       name: teacher.name,
@@ -35,24 +36,27 @@ const teacherLogin = asyncHandler(async (req, res) => {
   }
 });
 
-// // @desc Auth Login
-// // @route POST /auth/login/student
-// // @access Public
+// student login
 const studentLogin = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({ message: "All Fields are required" });
   }
+
+  // Find the user with the given username
   const student = await Student.findOne({ username }).exec();
 
   if (!student) {
     return res.status(404).json({ message: "User not found" });
   }
 
+  // Check if password matches (Here, it seems like the password comparison is missing)
   const match = await bcrypt.compare(password, student.password);
   if (!match) return res.status(401).json({ message: "Incorrect Password" });
   else {
+
+    // Return user details if login is successful
     res.status(200).json({
       _id: student.id,
       name: student.name,
@@ -60,18 +64,6 @@ const studentLogin = asyncHandler(async (req, res) => {
     });
   }
 });
-
-// // @desc Auth Logout
-// // @route POST /auth/logout
-// // @access Public
-// const logout = asyncHandler(async (req, res) => {});
-
-
-
-
-
-// In your authController.js
-
 
 // General login function for any user type
 const generalLogin = asyncHandler(async (req, res) => {

@@ -2,18 +2,22 @@ const { default: mongoose } = require("mongoose");
 const Internal = require("./../models/Internal");
 const asyncHandler = require("express-async-handler");
 
-// @desc Get Internal Result
-// @route GET /internal/:paper
-// @access Everyone
+
+// Retrieve internal results based on paper ID
 const getInternal = asyncHandler(async (req, res) => {
+  // Validate if paper ID is provided
   if (!req?.params?.paper) {
     return res
       .status(400)
       .json({ message: "Incomplete Request: Params Missing" });
   }
+
+  // Fetch internal result for the specified paper
   const internal = await Internal.findOne({
     paper: req.params.paper,
   }).exec();
+
+  // Handle case where no records are found
   if (!internal) {
     return res.status(404).json({
       message: "No Existing Record(s) found. Add New Record.",
@@ -22,15 +26,15 @@ const getInternal = asyncHandler(async (req, res) => {
   res.json(internal);
 });
 
-// @desc Get Internal Result
-// @route GET /internal/student/:studentId
-// @access Everyone
+// Retrieve internal results for a specific student
 const getInternalStudent = asyncHandler(async (req, res) => {
-  if (!req?.params?.studentId) {
+  if (!req?.params?.studentId) {  // Validate student ID parameter
     return res
       .status(400)
       .json({ message: "Incomplete Request: Params Missing" });
   }
+
+  // Perform aggregation to fetch internal marks of a student
   const internal = await Internal.aggregate([
     {
       $lookup: {
@@ -69,16 +73,14 @@ const getInternalStudent = asyncHandler(async (req, res) => {
       message: "No Records Found.",
     });
   }
-  res.json(internal);
+  res.json(internal);  // Return the fetched internal results for the student
 });
 
-// @desc Add Internal
-// @route POST /Internal
-// @access Private
+// Add new internal record
 const addInternal = asyncHandler(async (req, res) => {
   const { paper, marks } = req.body;
 
-  // Confirm Data
+  // Confirm all required data is present
   if (!paper || !marks) {
     return res
       .status(400)
@@ -109,9 +111,7 @@ const addInternal = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Update Internal
-// @route PATCH /Internal
-// @access Private
+// upload marks
 const updateInternal = asyncHandler(async (req, res) => {
   const { id, paper, marks } = req.body;
 
@@ -149,9 +149,7 @@ const updateInternal = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Delete Teacher
-// @route DELETE /Teacher
-// @access Private
+// delete imarks
 const deleteInternal = asyncHandler(async (req, res) => {
   const id = req.params.paper;
 

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Internal Result of Students
+// Grades of Students schema
 const internalSchema = new mongoose.Schema({
   paper: {
     type: mongoose.Schema.Types.ObjectId,

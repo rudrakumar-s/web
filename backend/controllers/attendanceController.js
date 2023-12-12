@@ -2,15 +2,16 @@ const { default: mongoose } = require("mongoose");
 const Attendance = require("./../models/Attendance");
 const asyncHandler = require("express-async-handler");
 
-// @desc Get Attendance
-// @route GET /attendance
-// @access Everyone
+// Function to get attendance by date, and hour
 const getAttendance = async (req, res) => {
+  // Check for required parameters
   if (!req?.params?.paper || !req?.params?.date || !req?.params?.hour) {
     return res
       .status(400)
       .json({ message: "Incomplete Request: Params Missing" });
   }
+
+  // Find attendance record matching the criteria
   const attendance = await Attendance.findOne({
     paper: req.params.paper,
     date: req.params.date,
@@ -26,9 +27,7 @@ const getAttendance = async (req, res) => {
   res.json(attendance);
 };
 
-// @desc Get Attendance Student
-// @route GET /attendance/student/date
-// @access Everyone
+// Function to get attendance records for a student on a specific date
 const getAttendanceStudent = asyncHandler(async (req, res) => {
   if (!req?.params?.studentId || !req?.params?.date) {
     return res
