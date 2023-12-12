@@ -8,6 +8,7 @@ import Loading from "../Layouts/Loading";
 import ErrorStrip from "../ErrorStrip";
 
 const JoinPaper = () => {
+  // Utilizing React context and state hooks
   const { user, setPaperList } = useContext(UserContext);
   const [error, setError] = useState("");
   const [papers, setPapers] = useState([]);
@@ -31,6 +32,7 @@ const JoinPaper = () => {
     return () => updatePapers();
   }, [user, setPaperList]);
 
+  // Handle join action
   const handleJoin = async (e) => {
     const paperId = e.currentTarget.id;
     const index = e.target.name;
@@ -40,6 +42,8 @@ const JoinPaper = () => {
 
   };
 
+  // Handle leave action
+
   const handleLeave = async (e) => {
     const paperId = e.currentTarget.id;
     const index = e.target.name;
@@ -48,6 +52,7 @@ const JoinPaper = () => {
     updateStudents(paperId, updatedStudents, index);
   };
 
+  // Update student list 
   const updateStudents = async (paperId, studentsObj, paperIndex) => {
     setError("");
     try {

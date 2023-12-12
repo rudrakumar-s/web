@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"], // Specify the paths to the files where Tailwind CSS will be applied
   theme: {
     extend: {
       keyframes: {
@@ -46,5 +46,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [], // Specify any additional Tailwind CSS plugins if needed
 };

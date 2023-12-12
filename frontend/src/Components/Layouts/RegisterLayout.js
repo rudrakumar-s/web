@@ -6,6 +6,7 @@ import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 const RegisterLayout = () => {
   const location = useLocation().pathname;
 
+  // registration form
   return (
     <main
       id="register"

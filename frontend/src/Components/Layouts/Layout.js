@@ -6,9 +6,12 @@ import UserContext from "../../Hooks/UserContext";
 
 // layout of the entire dash/ route
 const Layout = () => {
+  // Accessing user context to determine if the user is logged in.
   const { user } = useContext(UserContext);
+  // Getting the current location (route) to conditionally render components.
   const location = useLocation().pathname;
 
+  //  dashboard
   return (
     <div className="relative flex flex-col bg-slate-950">
       <Header />

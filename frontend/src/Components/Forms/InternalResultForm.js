@@ -7,6 +7,7 @@ import { TableHeader } from "../Table";
 import ErrorStrip from "../ErrorStrip";
 
 const InternalResultForm = () => {
+  // State variables and context
   const { paperList } = useContext(UserContext);
   const [paper, setPaper] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -14,6 +15,7 @@ const InternalResultForm = () => {
   const [id, setId] = useState([]);
   const [error, setError] = useState("");
 
+  // Fetch internal marks for a paper
   const fetchInternal = async (e) => {
     setInternal([]);
     setError("");
@@ -89,8 +91,7 @@ const InternalResultForm = () => {
 
   // updating internal state on "onChange" event.
   const handleFormChange = (e) => {
-    // the whole thing is a convoluted mess, but it works.
-    // if you have an alternative, DM ;).
+    
     const index = parseInt(e.target.id);
     const value = e.target.value;
     const key = e.target.name;

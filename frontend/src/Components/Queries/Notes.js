@@ -8,9 +8,11 @@ import Loading from "../Layouts/Loading";
 import ErrorStrip from "../ErrorStrip";
 
 const Notes = () => {
+  // Access user context and state variables
   const { paper, notes, setNotes, user } = useContext(UserContext);
   const [error, setError] = useState("");
 
+  // Fetch notes data when the component mounts
   useEffect(() => {
     const getNotes = async () => {
       try {
@@ -29,9 +31,11 @@ const Notes = () => {
       }
     };
     getNotes();
+    // Cleanup: clear notes when the component unmounts
     return () => setNotes([]);
   }, [paper, setNotes]);
 
+  // Delete a note
   const deleteNote = async (e) => {
     const id = e.currentTarget.id;
     const response = await axios.delete("notes/" + id);
@@ -42,6 +46,7 @@ const Notes = () => {
     });
   };
 
+  // display course info
   return (
     <main>
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">

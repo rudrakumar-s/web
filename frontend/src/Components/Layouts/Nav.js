@@ -7,9 +7,11 @@ import { BiBookAdd } from "react-icons/bi";
 import { RiUserAddLine } from "react-icons/ri";
 import { PiStudent, PiUser, PiBooks } from "react-icons/pi";
 
+// Navigation component for the application
 const Nav = () => {
   const { user } = useContext(UserContext);
   return (
+    // Navigation bar styling
     <nav
       id="nav"
       className="z-0 hidden h-full flex-col justify-stretch bg-black px-4 py-4 text-slate-100 dark:bg-gradient-to-b dark:from-black lg:flex"
@@ -21,24 +23,14 @@ const Nav = () => {
             Course
           </li>
         </NavLink>
-        {/* <NavLink to={"./attendance"} className="w-full font-medium">
-          <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
-            <IoCalendarOutline className="pt-[0.1rem] text-2xl  " />
-            Attendance
-          </li>
-        </NavLink> */}
+        
         <NavLink to={"./internal"} className="w-full font-medium">
           <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-red-200">
             <HiOutlineDocumentReport className="pt-[0.1rem] text-2xl  " />
             Grades
           </li>
         </NavLink>
-        {/* <NavLink to={"./time_schedule"} className="w-full font-medium">
-          <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
-            <AiOutlineSchedule className="pt-[0.1rem] text-2xl  " />
-            Time Schedule
-          </li>
-        </NavLink> */}
+        
         {user.role === "HOD" && (
           <>
             <NavLink to={"./add_paper"} className="w-full font-medium">

@@ -7,6 +7,7 @@ import ErrorStrip from "../ErrorStrip";
 // Teacher Registration Form
 const TeacherForm = () => {
   const navigate = useNavigate();
+  // State for storing teacher information
   const [teacher, setTeacher] = useState({
     name: "",
     email: "",
@@ -18,6 +19,7 @@ const TeacherForm = () => {
   });
   const [error, setError] = useState("");
 
+  // Function to handle input changes and update the state
   const handleFormChange = (e) => {
     setTeacher({
       ...teacher,
@@ -25,7 +27,7 @@ const TeacherForm = () => {
     });
   };
 
-  //TODO Add more departments
+  // Function to handle form submission for registering a new teacher
   const addTeacher = async (e) => {
     e.preventDefault();
     try {
@@ -38,6 +40,7 @@ const TeacherForm = () => {
     }
   };
 
+  // Registration form layout
   return (
     <form className="scrollWidth w-full  font-medium tracking-wide accent-violet-600">
       <label className="block" htmlFor="name">

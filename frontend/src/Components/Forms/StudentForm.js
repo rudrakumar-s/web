@@ -15,6 +15,7 @@ const StudentForm = () => {
   });
   const [error, setError] = useState("");
 
+  // Function to update state based on form inputs
   const handleFormChange = (e) => {
     setStudent({
       ...student,
@@ -22,6 +23,7 @@ const StudentForm = () => {
     });
   };
 
+  // Function to handle form submission
   const addStudent = async (e) => {
     e.preventDefault();
     try {
@@ -34,6 +36,7 @@ const StudentForm = () => {
     }
   };
 
+  // Student registration form
   return (
     <form className="scrollWidth w-full  font-medium tracking-wide accent-violet-600">
       <label className="block" htmlFor="name">

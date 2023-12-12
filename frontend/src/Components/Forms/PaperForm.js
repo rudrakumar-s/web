@@ -29,6 +29,7 @@ const PaperForm = () => {
     getTeachers();
   }, [user]);
 
+  // Function to add a new paper
   const addPaper = async (e) => {
     e.preventDefault();
     try {
@@ -40,6 +41,7 @@ const PaperForm = () => {
     }
   };
 
+  // Handle input changes in the form
   const handleFormChange = (e) => {
     setNewPaper({
       ...newPaper,

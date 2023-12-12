@@ -1,5 +1,6 @@
 import React from "react";
 
+// TableHeader component renders a table header row with specified headers.
 const TableHeader = ({
   AdditionalRowClasses,
   AdditionalHeaderClasses,
@@ -19,7 +20,7 @@ const TableHeader = ({
     </thead>
   );
 };
-
+// RowWithCheckbox component renders a table row with a checkbox and student name.
 const RowWithCheckbox = ({ keys, disabled, value, handleFormChange }) => {
   return (
     <tr

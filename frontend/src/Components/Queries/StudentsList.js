@@ -5,6 +5,7 @@ import Loading from "../Layouts/Loading";
 import ErrorStrip from "../ErrorStrip";
 
 const StudentsList = () => {
+  // access student context
   const { paper } = useContext(UserContext);
   const [students, setStudents] = useState([]);
   const [error, setError] = useState("");
@@ -28,6 +29,8 @@ const StudentsList = () => {
     };
     getStudentsList();
   }, [paper]);
+
+  // student details..
   return (
     <main className="student">
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">

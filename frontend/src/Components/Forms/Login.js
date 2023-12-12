@@ -17,6 +17,7 @@ const Login = () => {
   const [buttonText, setButtonText] = useState("Login");
   const [message, setMessage] = useState("");
 
+  // Displays a message if the server takes time to respond
   const slowLoadingIndicator = () => {
     setTimeout(() => {
       setMessage(
@@ -25,6 +26,7 @@ const Login = () => {
     }, 4000);
   };
 
+  // Handles the login process
   const handleLogin = async (e) => {
     e.preventDefault();
     if (userType === "") {
@@ -84,7 +86,7 @@ const Login = () => {
   //   }
   // };
   
-  // Other parts of the Login component remain unchanged
+  // Initializing user state on component mount
   
   useEffect(() => {
     if ("userDetails" in localStorage) {

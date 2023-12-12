@@ -5,10 +5,12 @@ import axios from "../../config/api/axios";
 import { PiUserThin, PiStudentThin } from "react-icons/pi";
 
 const Profile = () => {
+  // Access user context and state variables
   const { user } = React.useContext(UserContext);
   const [profile, setProfile] = React.useState({});
 
   React.useEffect(() => {
+    // Fetch the user's profile data from the server
     const getProfile = async () => {
       const response = await axios.get(`${user.userType}/${user._id}`);
       setProfile(response.data);
@@ -16,6 +18,7 @@ const Profile = () => {
     getProfile();
   }, [user]);
 
+  // profile details
   return (
     <main className="flex w-full flex-col justify-center md:w-fit">
       {profile.name ? (

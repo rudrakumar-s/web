@@ -4,9 +4,10 @@ import Header from "./Header";
 import Nav from "./Nav";
 import UserContext from "../../Hooks/UserContext";
 
+// The ErrorElement component is used to display error messages.
 const ErrorElement = () => {
   const { user } = useContext(UserContext);
-  const error = useRouteError();
+  const error = useRouteError();  // Retrieve the error details from the router
 
   return (
     <div className="relative flex flex-col bg-slate-950">

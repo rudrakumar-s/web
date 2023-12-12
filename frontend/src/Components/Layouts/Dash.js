@@ -13,6 +13,7 @@ import axios from "../../config/api/axios";
 const Dash = () => {
   const { user, setPaperList } = useContext(UserContext);
 
+  // Fetch papers when the component mounts or when user changes
   useEffect(() => {
     const getPapers = async () => {
       const response = await axios.get(`paper/${user.userType}/${user._id}`);
@@ -21,6 +22,7 @@ const Dash = () => {
     getPapers();
   }, [setPaperList, user]);
 
+  // Main dashboard layout
   return (
     <main className="self-center">
       <h2 className="m-6 mx-auto text-center text-6xl font-bold text-white dark:text-white">
@@ -40,19 +42,6 @@ const Dash = () => {
           </div>
         </Link>
 
-        {/* <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
-          to={"./attendance"}
-        >
-          <IoCalendarOutline className="text-[2.5rem] lg:text-[4rem] " />
-          <div className="font-semibold">
-            Attendance
-            <p className="text-sm font-normal lg:text-base ">
-              Add or Edit Attendance
-            </p>
-          </div>
-        </Link> */}
-
         <Link
           className="flex gap-2 rounded-lg bg-gradient-to-r from-red-500 to-black p-6 text-base text-white hover:bg-gradient-to-l hover:from-black hover:to-red-500 hover:text-white dark:bg-gradient-to-r dark:from-red-500 dark:to-black lg:text-lg"
           to={"./internal"}
@@ -65,19 +54,6 @@ const Dash = () => {
             </p>
           </div>
         </Link>
-
-        {/* <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
-          to={"./time_schedule"}
-        >
-          <AiOutlineSchedule className="text-[2.5rem] lg:text-[4rem] " />
-          <div className="font-semibold">
-            Time Schedule
-            <p className="text-sm font-normal lg:text-base ">
-              View or Edit Time Schedule
-            </p>
-          </div>
-        </Link> */}
 
         {user.role === "HOD" && (
           <>

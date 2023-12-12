@@ -6,10 +6,14 @@ import Loading from "../Layouts/Loading";
 import ErrorStrip from "../ErrorStrip";
 
 const InternalStudent = () => {
+  // Access user context
   const { user } = React.useContext(UserContext);
+
+  // Initialize state variables
   const [internal, setInternal] = React.useState([]);
   const [error, setError] = React.useState("");
 
+  // Fetch internal grades data when the component mounts
   React.useEffect(() => {
     const fetchInternal = async () => {
       try {
@@ -20,8 +24,9 @@ const InternalStudent = () => {
       }
     };
     fetchInternal();
-  }, [user]);
+  }, [user]); // Only fetch data when the user context changes
 
+  // grdding....
   return (
     <main className="internal">
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">

@@ -8,11 +8,13 @@ import Loading from "../Layouts/Loading";
 import ErrorStrip from "../ErrorStrip";
 
 const TeacherApproval = () => {
+  // Access user context and state variables
   const { user } = useContext(UserContext);
   const [newTeachers, setNewTeachers] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    // Fetch a list of new teachers awaiting approval
     const getNewTeachers = async () => {
       try {
         const response = await axios.get("teacher/approve/" + user.department);
@@ -25,6 +27,7 @@ const TeacherApproval = () => {
   }, [user]);
 
   const handleApprove = async (e) => {
+    // Handle the approval of a new teacher
     const index = e.currentTarget.id;
     const teacher = newTeachers[index];
     teacher.role = "teacher";
@@ -42,6 +45,7 @@ const TeacherApproval = () => {
   };
 
   const handleDelete = async (e) => {
+    // Handle the rejection and deletion of a new teacher
     const teacher = newTeachers[e.currentTarget.id]._id;
     try {
       const response = await axios.delete("/teacher/" + teacher);
@@ -54,6 +58,7 @@ const TeacherApproval = () => {
     }
   };
 
+  // Admin detailssss
   return (
     <>
       {user.role === "HOD" ? (

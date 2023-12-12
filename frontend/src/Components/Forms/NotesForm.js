@@ -18,12 +18,14 @@ const NotesForm = () => {
   const navigate = useNavigate();
   const noteId = useParams()?.note;
 
+  // Effect to set the note details if editing an existing note
   useEffect(() => {
     if (noteId) {
       setNote(notes[noteId]);
     }
   }, [noteId, notes]);
 
+  // Handles form changes
   const handleFormChange = (e) => {
     setNote({
       ...note,
@@ -31,6 +33,7 @@ const NotesForm = () => {
     });
   };
 
+  // Function to add a new note
   const addNote = async (e) => {
     e.preventDefault();
     try {
@@ -43,6 +46,7 @@ const NotesForm = () => {
     }
   };
 
+  // Function to update an existing note
   const updateNote = async (e) => {
     e.preventDefault();
     try {

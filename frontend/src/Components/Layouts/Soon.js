@@ -8,12 +8,7 @@ const Soon = () => {
         <h1 className="inline font-semibold">Under Construction</h1>
       </div>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga libero
-        sunt odio deserunt amet laudantium nam officiis corrupti animi adipisci.
-        Ex expedita officiis, nam explicabo iste dolore ab. Fugit harum
-        cupiditate rem repudiandae aut dolorum culpa pariatur voluptas
-        consectetur maxime ullam possimus atque, iste optio repellendus natus a?
-        Aliquid dolore nesciunt. quis dignissimos sint dolorem itaque porro?
+       
       </p>
     </section>
   );

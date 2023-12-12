@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 import { toast } from "react-toastify";
 
+// The Header component is used at the top of the page for navigation and logout functionality.
 const Header = () => {
-  const { setUser, setPaperList } = useContext(UserContext);
+  const { setUser, setPaperList } = useContext(UserContext);  // Access user and paper list context and their update functions
+
+  // Function to handle logout
   const logout = () => {
     setUser("");
     setPaperList([]);
     localStorage.clear();
-    toast.info("Logged Out");
+    toast.info("Logged Out"); //// Show logout notification
   };
   return (
     <header className="absolute top-0 flex w-full justify-between bg-slate-950 text-slate-50 dark:bg-slate-950 ">
